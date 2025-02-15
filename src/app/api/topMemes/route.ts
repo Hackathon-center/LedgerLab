@@ -52,7 +52,8 @@ export async function GET(req: NextRequest) {
   try {
     const { data } = await axios.request(request_options);
 
-    const formattedData: memeData[] = data.data.map((data: ApiResponse) => ({
+    const formattedData: memeData[] = data.data
+    .map((data: ApiResponse) => ({
       id: data.id,
       title: data.title,
       creation_date: data.creationDate,
@@ -62,7 +63,7 @@ export async function GET(req: NextRequest) {
       total_comments: data.comments,
       score: data.score,
       shares: data.shares,
-    }));
+    })).filter((post: memeData) => post.total_comments > 0);
 
     return NextResponse.json(formattedData);
   } catch (error) {
