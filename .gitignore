@@ -1,5 +1,9 @@
 .idea/
 
+.vscode/
+
+.venv/
+
 # dependencies
 /node_modules
 /.pnp
